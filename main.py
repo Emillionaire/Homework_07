@@ -3,8 +3,8 @@ from pprint import pprint as p
 name_list = ['ingredient_name', 'quantity', 'measure']
 
 
-def read_recipe():
-    with open('recipes.txt', encoding='utf-8') as f:
+def read_recipe(path):
+    with open(path, encoding='utf-8') as f:
         # Reading file
         cook_book = {}
         for row in f:
@@ -20,9 +20,9 @@ def read_recipe():
         return cook_book
 
 
-def get_shop_list_by_dishes(dishes, person_count):
-    # Crate shopping list
-    cook_book = read_recipe()
+def get_shop_list_by_dishes(dishes, person_count, path):
+    # Create shopping list
+    cook_book = read_recipe(path)
     shopping_list = {}
     for dish in dishes:
         for j in cook_book[dish]:
@@ -35,7 +35,7 @@ def get_shop_list_by_dishes(dishes, person_count):
     p(shopping_list, sort_dicts=False)
 
 
-get_shop_list_by_dishes(['Омлет', 'Омлет', 'Запеченный картофель', 'Утка по-пекински', 'Фахитос', 'Запеченный картофель'], 17)
+get_shop_list_by_dishes(['Омлет', 'Омлет', 'Запеченный картофель', 'Утка по-пекински', 'Фахитос', 'Запеченный картофель'], 17, 'recipes.txt')
 
 
 file_list = ['1.txt', '2.txt', '3.txt']
