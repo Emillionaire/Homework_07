@@ -54,10 +54,7 @@ def merging_file():
     with open('result.txt', 'w', encoding='utf-8') as f:
         for i, j in sorted_dict.items():
             with open(i, encoding='utf-8') as source:
-                f.write(i)
-                f.write('\n')
-                f.write(str(j))
-                f.write('\n')
+                f.write(i + '\n' + str(j) + '\n')
                 for k in source:
                     f.write(k)
                 f.write('\n')
