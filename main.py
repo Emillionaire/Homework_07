@@ -2,24 +2,27 @@ from pprint import pprint as p
 
 name_list = ['ingredient_name', 'quantity', 'measure']
 
-with open('recipes.txt', encoding='utf-8') as f:
-    # Reading file
-    cook_book = {}
-    for row in f:
-        cook_book[row.strip()] = []
-        how_many_ingredients = f.readline()
-        for i in range(int(how_many_ingredients)):
-            ingredient_row = f.readline().strip().split(' | ')
-            zip_ = {}
-            for y, z in zip(name_list, ingredient_row):
-                zip_[y] = z
-            cook_book[row.strip()].append(zip_)
-        f.readline()
-    p(cook_book, sort_dicts=False)
+
+def read_recipe():
+    with open('recipes.txt', encoding='utf-8') as f:
+        # Reading file
+        cook_book = {}
+        for row in f:
+            cook_book[row.strip()] = []
+            how_many_ingredients = f.readline()
+            for i in range(int(how_many_ingredients)):
+                ingredient_row = f.readline().strip().split(' | ')
+                zip_ = {}
+                for y, z in zip(name_list, ingredient_row):
+                    zip_[y] = z
+                cook_book[row.strip()].append(zip_)
+            f.readline()
+        return cook_book
 
 
 def get_shop_list_by_dishes(dishes, person_count):
     # Crate shopping list
+    cook_book = read_recipe()
     shopping_list = {}
     for dish in dishes:
         for j in cook_book[dish]:
